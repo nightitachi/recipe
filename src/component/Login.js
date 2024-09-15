@@ -9,11 +9,14 @@ function Login() {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault(); 
     axios.post("http://localhost:3001/auth/login", { username, password }) // changed to login route
       .then((result) => {
+        window.localStorage.setItem("id",result.data.id);
         navigate('/')
         console.log(result);
+        
+        
       })
       .catch((err) => {
         console.log(err);
@@ -54,8 +57,6 @@ function Login() {
           <button type="submit" className="btn btn-success">
             login
           </button>
-
-          {/* You may want to link to register if this is the login form */}
           <Link to="/auth/register">
             <button type="button" className="btn btn-default w-100 mt-2">
               Register

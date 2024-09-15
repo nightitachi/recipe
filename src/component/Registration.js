@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';  // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom';  
 
 function Registration() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();  
     axios.post('http://localhost:3001/auth/register', { username, password })
       .then(result => {
-        navigate('/auth/Login')
-        console.log(result.data)
+        navigate('/auth/login')
+        console.log(result)
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => 
+        console.log(err))
   };
 
   return (
