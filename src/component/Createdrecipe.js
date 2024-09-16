@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 function Createdrecipe() {
   const [recipe, setRecipe] = useState({
     name: "",
@@ -13,12 +13,15 @@ function Createdrecipe() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setRecipe({ ...recipe, [name]: value });
+    
   };
+  const navigate= useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.post('http://localhost:3001/recipe/createdrecipe', recipe)
       .then(result => {
+        navigate('/')
         console.log(result.data);
         alert("Recipe created!");
       })
