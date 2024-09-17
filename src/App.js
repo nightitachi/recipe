@@ -6,6 +6,7 @@ import Home from './component/Home';
 import Nav from './component/Nav';
 import Savedrecipe from './component/Savedrecipe';
 import Createdrecipe from './component/Createdrecipe';
+import Readrecipe from './component/Readrecipe';
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,8 @@ function App() {
           <Route path="/auth/login" element={<Login />} /> 
           <Route path="/recipe/createdrecipe" element={<Createdrecipe />} />
           <Route path="/recipe/savedrecipe" element={<Savedrecipe />} />
+          <Route path="/read-recipe/:id" element={<Readrecipe />} />
+
         </Routes>
       </BrowserRouter>
   );

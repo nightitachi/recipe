@@ -18,7 +18,7 @@ function Createdrecipe() {
   const navigate= useNavigate();
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     axios.post('http://localhost:3001/recipe/createdrecipe', recipe)
       .then(result => {
         navigate('/')

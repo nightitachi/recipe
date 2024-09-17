@@ -6,11 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  axios.defaults.withCredentials=true
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    axios.post("http://localhost:3001/auth/login", { username, password }) // changed to login route
+    axios.post("http://localhost:3001/auth/login", { username, password }) 
       .then((result) => {
         window.localStorage.setItem("id",result.data.id);
         navigate('/')
@@ -29,15 +31,14 @@ function Login() {
         <h3>Login</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">
+            <label htmlFor="username" className="form-control">
               Username
             </label>
             <input
               type="text"
-              id="username"
+              
               className="form-control"
               placeholder="Enter username"
-              value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
@@ -50,7 +51,6 @@ function Login() {
               id="password"
               className="form-control"
               placeholder="Enter password"
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
