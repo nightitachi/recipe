@@ -12,10 +12,10 @@ function App() {
     <BrowserRouter>
     <Nav/>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth/register" element={<Registration />} />
-          <Route path="/auth/login" element={<Login />} /> 
-          <Route path="/recipe/createdrecipe" element={<Createdrecipe />} />
+          <Route path="/" element={<Home />}/>
+          <Route path="/auth/register" element={<Registration />}/>
+          <Route path="/auth/login" element={<Login />}/> 
+          <Route path="/recipe/createdrecipe" element={<Createdrecipe />}/>
           <Route path="/recipe/savedrecipe" element={<Savedrecipe />} />
           <Route path="/read-recipe/:id" element={<Readrecipe />} />
 

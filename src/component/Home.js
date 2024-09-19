@@ -20,7 +20,7 @@ function Home() {
         <h2>Recipes</h2>
         {recipes.map(recipe => (
           <div key={recipe._id} className="mt-4 p-3 border">
-            <Link to={`/read-recipe/${recipe._id}`} className="text-decoration-none"> {/* Fixed interpolation */}
+            <Link to={`/read-recipe/${recipe._id}`} className="text-decoration-none"> 
               <h3>{recipe.name}</h3>
               <p>{recipe.description}</p>
             </Link>
