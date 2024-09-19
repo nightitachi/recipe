@@ -5,21 +5,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
+
   useEffect(() => {
-    axios
-      .get("/http://localhost:3001/recipe/recipes")
-      .then((recipes) => {
-        setRecipes(recipes.data);
+    axios.get('http://localhost:3001/recipe/recipes') 
+      .then((response) => { 
+        setRecipes(response.data);
       })
       .catch((err) => console.log(err));
-  });
+  }, []); 
+
   return (
     <div>
       <div>
         <h2>Recipes</h2>
         {recipes.map(recipe => (
           <div key={recipe._id} className="mt-4 p-3 border">
-            <Link to={'/read-recipe/${recipe._id}'} className="text-decoration-none">
+            <Link to={`/read-recipe/${recipe._id}`} className="text-decoration-none"> {/* Fixed interpolation */}
               <h3>{recipe.name}</h3>
               <p>{recipe.description}</p>
             </Link>

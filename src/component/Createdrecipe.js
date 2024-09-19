@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 function Createdrecipe() {
   const [recipe, setRecipe] = useState({
     name: "",
@@ -13,15 +14,15 @@ function Createdrecipe() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setRecipe({ ...recipe, [name]: value });
-    
   };
-  const navigate= useNavigate();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     axios.post('http://localhost:3001/recipe/createdrecipe', recipe)
       .then(result => {
-        navigate('/')
+        navigate('/');
         console.log(result.data);
         alert("Recipe created!");
       })
@@ -37,10 +38,9 @@ function Createdrecipe() {
             <label htmlFor='name' className='form-label'>Name</label>
             <input
               type='text'
-              id='name'
               className='form-control'
               placeholder='Enter recipe name'
-              name='name'
+              name='name' 
               value={recipe.name}
               onChange={handleChange}
             />
@@ -49,10 +49,9 @@ function Createdrecipe() {
             <label htmlFor='description' className='form-label'>Description</label>
             <input
               type='text'
-              id='description'
               className='form-control'
               placeholder='Enter description'
-              name='description'
+              name='description' 
               value={recipe.description}
               onChange={handleChange}
             />
@@ -61,10 +60,9 @@ function Createdrecipe() {
             <label htmlFor='ingredients' className='form-label'>Ingredients</label>
             <input
               type='text'
-              id='ingredients'
               className='form-control'
               placeholder='Enter ingredients'
-              name='ingredients'
+              name='ingredients' 
               value={recipe.ingredients}
               onChange={handleChange}
             />
@@ -73,10 +71,9 @@ function Createdrecipe() {
             <label htmlFor='imgurl' className='form-label'>ImgUrl</label>
             <input
               type='text'
-              id='imgurl'
               className='form-control'
               placeholder='Enter image URL'
-              name='imgurl'
+              name='imgurl' 
               value={recipe.imgurl}
               onChange={handleChange}
             />

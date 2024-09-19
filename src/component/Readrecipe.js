@@ -10,7 +10,7 @@ function Readrecipe() {
   useEffect(() => {
     const getRecipe = () => {
       axios
-        .get('http://localhost:3001/recipe/recipe-by-id/' + id) // Added '/' before id
+        .get('http://localhost:3001/recipe/recipe-by-id/' + id) 
         .then(result => {
           setRecipe(result.data);
         })
@@ -19,14 +19,14 @@ function Readrecipe() {
 
     const fetchSavedRecipe = () => {
       axios
-        .get('http://localhost:3001/recipe/saved-recipes/' + id) // Added '/' before id
+        .get('http://localhost:3001/recipe/saved-recipes/' + id) 
         .then(result => {
-          setSavedRecipe(result.data.savedRecipe); // Fixed to use setSavedRecipe
+          setSavedRecipe(result.data.savedRecipe); 
         })
         .catch(err => console.log(err));
     };
 
-    // Call the functions to fetch data
+    
     getRecipe();
     fetchSavedRecipe();
   }, [id]);

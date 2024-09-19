@@ -17,11 +17,8 @@ function Nav() {
               <Link className="nav-link" to="/recipe/savedrecipe" >Saved Recipe</Link>
             </li> 
           </ul>
-          <form className="d-flex" role="search">
-            
-            <button className="btn btn-outline-success decoration-none " type="submit"><Link to="/auth/register">Register/Login</Link></button>
-            
-          </form>
+          <button className="btn btn-outline-success text-decoration-none " type="submit"><Link to="/auth/register">Register/Login</Link></button>
+
         </div>
       </div>
     </nav>
