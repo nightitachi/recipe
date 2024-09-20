@@ -4,25 +4,26 @@ import { useParams } from 'react-router-dom';
 
 function Readrecipe() {
   const { id } = useParams();
+  const userId = window.localStorage.getItem("id")
   const [recipe, setRecipe] = useState({});
   const [savedRecipe, setSavedRecipe] = useState([]);
 
   useEffect(() => {
     const getRecipe = () => {
-      axios
-        .get('http://localhost:3001/recipe/recipe-by-id/' + id) 
+      axios.get('http://localhost:3001/recipe/recipe-by-id/' + IDBDatabase) 
         .then(result => {
           setRecipe(result.data);
         })
         .catch(err => console.log(err));
+        
     };
 
     const fetchSavedRecipe = () => {
       axios
-        .get('http://localhost:3001/recipe/saved-recipes/' + id) 
-        .then(result => {
-          setSavedRecipe(result.data.savedRecipe); 
-        })
+        .get('http://localhost:3001/recipe/saved-recipes/' + userId) 
+        .then(result => (
+          setSavedRecipe(result.data.saveRecipe) 
+        ))
         .catch(err => console.log(err));
     };
 
@@ -31,15 +32,14 @@ function Readrecipe() {
     fetchSavedRecipe();
   }, [id]);
 
-  const saveRecipe = (recipeId) => {
-    axios
-      .put('http://localhost/recipes', { id, recipeId })
-      .then(result => {
-        console.log(result);
-      })
+  const savedRecipes = (recipeId) => {
+    axios.put('http://localhost:3001/recipe', { userId, recipeId })
+      .then(result => (
+        setSavedRecipe(result.data.saveRecipe) 
+      ))
       .catch(err => console.log(err));
   };
-
+  const isRecipeSaved=(id)=>savedRecipe.includes(id)
   return (
     <>
       <div className='d-flex justify-content-center container mt-3'>
@@ -48,7 +48,8 @@ function Readrecipe() {
   
       <div className="p-2">
         <h2>{recipe.name}</h2>
-        <button className='btn btn-warning' onClick={() => saveRecipe(recipe._id)}>Save</button>
+        <button className='btn btn-warning' onClick={() => savedRecipes(recipe._id)} 
+          disabled = {isRecipeSaved(recipe._id) ? "Saved" : "Save"}>Save</button>
         <h3>Description</h3>
         <p>{recipe.description}</p>
         <h2>Ingredients</h2>
